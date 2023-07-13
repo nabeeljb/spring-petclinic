@@ -16,4 +16,12 @@ RUN jenkins-plugin-cli --plugins git && \
   apt-get install -y ca-certificates curl gnupg && \
   apt-get install -y docker.io docker-compose
 
+# Install AWS CLI
+RUN curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+  && unzip awscliv2.zip && sudo ./aws/install
+
+# Install Maven
+RUN apt-get update && \
+  apt-get install -y maven
+
 USER jenkins
