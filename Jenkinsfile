@@ -17,12 +17,15 @@ pipeline {
         }
 
         stage('SonarCloud') {
+            environment {
+                SONAR_TOKEN = credentials('sonarcloud')
+            }
             steps {
                 echo "============================="
                 echo "Scanning code with SonarCloud"
                 echo "============================="
                 withSonarQubeEnv('sonarserver1') {
-                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=nabeeljb_spring-petclinic"
+                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=nabeeljb_spring-petclinic -D sonar.login=$SONAR_TOKEN"
                 }
             }
         }
