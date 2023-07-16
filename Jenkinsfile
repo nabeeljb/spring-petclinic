@@ -8,32 +8,27 @@ pipeline {
             }
         }
 
-        stage('Build and Compile') {
+        stage('SonarCloud Analysis') {
             steps {
-                sh 'mvn clean'
-                sh 'mvn compile'
-                sh 'mvn package'
+                withSonarQubeEnv('sonarserver1') {
+                    withCredentials([string(credentialsId: 'sonar_tkn', variable: 'SONAR_TOKEN')]) {
+                        sh 'mvn clean compile sonar:sonar -Dsonar.projectKey=nabeeljb_spring-petclinic -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN -Dsonar.java.binaries=target/classes'
+                    }
+                }
             }
         }
 
-        stage('SonarCloud') {
-            environment {
-                SONAR_TOKEN = credentials('sonarcloud')
-            }
+        stage('Build and Package') {
             steps {
-                echo "============================="
-                echo "Scanning code with SonarCloud"
-                echo "============================="
-                withSonarQubeEnv('sonarserver1') {
-                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=nabeeljb_spring-petclinic -D sonar.login=$SONAR_TOKEN"
-                }
+                sh 'mvn clean package'
             }
         }
     }
 
-    post {
-        always {
-            cleanWs()
+    post { 
+        failure { cleanWs() }
+        success {
+            archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
         }
     }
 }
