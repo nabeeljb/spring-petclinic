@@ -22,7 +22,7 @@ pipeline {
                 echo "Scanning code with SonarCloud"
                 echo "============================="
                 withSonarQubeEnv('sonarserver1') {
-                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=nabeeljb_spring-petclinic,spring.profiles.active=mysql"
+                    sh "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -D sonar.projectKey=nabeeljb_spring-petclinic"
                 }
             }
         }
