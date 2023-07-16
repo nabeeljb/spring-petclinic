@@ -13,8 +13,8 @@
   <name>petclinic</name>
 
   <properties>
-    <sonar.organization>nabeeljb_spring-petclinic</sonar.organization>
-    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
+    <sonar.login>6034e1c81332e28bb3981a6ffeb3504e29aae0a3</sonar.login>
 
     <!-- Generic properties -->
     <java.version>17</java.version>
