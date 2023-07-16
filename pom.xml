@@ -15,6 +15,7 @@
   <properties>
     <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
     <sonar.login>6034e1c81332e28bb3981a6ffeb3504e29aae0a3</sonar.login>
+    <sonar.organization>nabeeljb</sonar.organization>
 
     <!-- Generic properties -->
     <java.version>17</java.version>
