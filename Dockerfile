@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 
-COPY target/your-application.jar /app/your-application.jar
+COPY target/*.jar /app/
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app/your-application.jar"]
+CMD ["java", "-jar", "/app/petclinic.jar"]
