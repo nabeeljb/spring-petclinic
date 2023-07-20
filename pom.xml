@@ -14,7 +14,7 @@
 
   <properties>
     <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
-    <sonar.login>6034e1c81332e28bb3981a6ffeb3504e29aae0a3</sonar.login>
+    <sonar.login>4ce49bec86622e86203a64fbe9746a620d2be70d</sonar.login>
     <sonar.organization>nabeeljb</sonar.organization>
 
     <!-- Generic properties -->
