@@ -1,7 +1,14 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:22-jdk-bullseye
 
-COPY target/*.jar /app/
+RUN mkdir -p /home/petclinic
+
+COPY Part2/target/spring-petclinic-3.1.0-SNAPSHOT.jar /home/petclinic/
+
+WORKDIR /home/petclinic/
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app/petclinic.jar"]
+ENV MYSQL_URL jdbc:mysql://mysql:3306/petclinic
+
+CMD ["java", "-jar", "spring-petclinic-3.1.0-SNAPSHOT.jar", "--spring.profiles.active=mysql"]
+
